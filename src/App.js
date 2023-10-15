@@ -44,7 +44,7 @@ export default function App() {
                     setError("");
 
                     const response = await fetch(
-                        `http://www.omdbapi.com/?apikey=${key}&s=${query}`,
+                        `https://www.omdbapi.com/?apikey=${key}&s=${query}`,
                         { signal: controller.signal }
                     );
                     if (!response.ok) throw new Error("Failed to fetch");
