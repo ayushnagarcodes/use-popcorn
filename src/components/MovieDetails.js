@@ -83,14 +83,14 @@ export default function MovieDetails({
 
     useEffect(
         function () {
-            function handleKeyPress(e) {
+            function handleEscKey(e) {
                 if (e.key === "Escape") onCloseMovie();
             }
 
-            document.addEventListener("keydown", handleKeyPress);
+            document.addEventListener("keydown", handleEscKey);
 
             return function () {
-                document.removeEventListener("keydown", handleKeyPress);
+                document.removeEventListener("keydown", handleEscKey);
             };
         },
         [onCloseMovie]

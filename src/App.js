@@ -13,7 +13,10 @@ export const key = "5efa1949";
 export default function App() {
     const [query, setQuery] = useState("");
     const [movies, setMovies] = useState([]);
-    const [watched, setWatched] = useState([]);
+    const [watched, setWatched] = useState(function () {
+        const savedData = localStorage.getItem("use-popcorn");
+        return JSON.parse(savedData) || [];
+    });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const [selectedId, setSelectedId] = useState(null);
@@ -33,6 +36,13 @@ export default function App() {
     function handleDeleteWatched(id) {
         setWatched((watched) => watched.filter((el) => el.imdbID !== id));
     }
+
+    useEffect(
+        function () {
+            localStorage.setItem("use-popcorn", JSON.stringify(watched));
+        },
+        [watched]
+    );
 
     useEffect(
         function () {
